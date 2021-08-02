@@ -19,13 +19,14 @@ public class MainApp {
       Car car = new Car("Тойота", 500);
 
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru", car));
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru", null));
-      userService.add(new User("User3", "Lastname3", "user3@mail.ru", null));
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Tesla", 500000)));
+
+      userService.add(new User("User1", "Lastname1", "user1@mail.ru", null));
+      userService.add(new User("User2", "Lastname2", "user2@mail.ru", car));
+      userService.add(new User("User3", "Lastname3", "user3@mail.ru", car));
+      userService.add(new User("User4", "Lastname4", "user4@mail.ru", null));
 
 
-      User user = userService.getUserByCar("Tesla", 500000);
+      User user = userService.getUserByCar("Тойота", 500);
 
       System.out.println("Id = "+user.getId());
       System.out.println("First Name = "+user.getFirstName());
