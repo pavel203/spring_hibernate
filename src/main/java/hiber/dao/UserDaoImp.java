@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDaoImp implements UserDao {
@@ -27,12 +28,11 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public User getUserByCar(String model, int series) {
+   public Optional<User> getUserByCar(String model, int series) {
       String HQL="SELECT user FROM User AS user WHERE user.car.model =:paramModel and user.car.series =:paramSeries";
-
       User user = sessionFactory.getCurrentSession().createQuery(HQL, User.class).
               setParameter("paramModel", model).setParameter("paramSeries", series).uniqueResult();
-      return user;
+      return user == null ? Optional.empty() : Optional.of(user);
    }
 
 }
